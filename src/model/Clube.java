@@ -2,43 +2,46 @@ package model;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Observable;
 
-public class Clube {
+public class Clube extends Observable implements ModelFacade {
 
     private Map<String,Membro> membrosPorNome;
-    private Map<Integer,Membro> membrosPorNr;
+    private Map<Integer,Membro> membrosPorNum;
 
     // Construtor
 
     public Clube() {
         this.membrosPorNome = new HashMap<>();
-        this.membrosPorNr = new HashMap<>();
+        this.membrosPorNum = new HashMap<>();
     }
-
-    // Métodos de instância
 
     /**
      * Adicionar um membro.
      * Se o membro já existe, é substituido.
      */
-    public void addAluno(Aluno a) {
-        Aluno copia = (Aluno)a.clone();
-        String num= a.getNumero();
-        boolean update = this.turma.containsKey(num);
-        this.turma.put(num,copia);
+    @Override
+    public void addMembro(String nome, int numero) {
+        //Membro m = new Membro(nome, numero);
+        Membro m = new Membro();
+        boolean update = this.membrosPorNum.containsKey(numero);
+        this.membrosPorNum.put(numero,m);
+        this.membrosPorNome.put(nome,m);
+    /*
         if (!update) {
             this.setChanged();
             this.notifyObservers();
         }
+    */
+        System.out.println("ola");
     }
 
-    /**
-     * Consultar um aluno
-     */
-    public Aluno getAluno(String num) throws TurmaException {
+
+/*
+    public Membro getMembroPorNr(String num) throws ClubeException {
 
         try {
-            Aluno a = this.turma.get(num);
+            Membro a = this.membrosPorNum.get(num);
             return (Aluno)a.clone();
         }
         catch (NullPointerException e) {
@@ -49,9 +52,7 @@ public class Clube {
         }
     }
 
-    /**
-     * Remover um aluno
-     */
+
     public void delAluno(String num) throws TurmaException {
         if (!this.turma.containsKey(num)) {
             StringBuffer sb = new StringBuffer("Aluno ");
@@ -63,4 +64,6 @@ public class Clube {
         this.setChanged();
         this.notifyObservers();
     }
+*/
+
 }
