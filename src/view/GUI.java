@@ -7,6 +7,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -38,6 +41,7 @@ public class GUI extends JFrame implements Observer {
         list1.setVisibleRowCount(4);
 
 
+
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -52,7 +56,21 @@ public class GUI extends JFrame implements Observer {
             }
         });
 
-
+        MouseListener mouseListener = new MouseAdapter() {
+            public void mouseClicked(MouseEvent mouseEvent) {
+                JList list1 = (JList) mouseEvent.getSource();
+                if (mouseEvent.getClickCount() == 2) {
+                    int index = list1.locationToIndex(mouseEvent.getPoint());
+                    if (index >= 0) {
+                        //Object o = list1.getModel().getElementAt(index);
+                        //System.out.println("Double-clicked on: " + o.toString());
+                        Cotas nova = new Cotas();
+                        nova.setVisible(true);
+                    }
+                }
+            }
+        };
+        list1.addMouseListener(mouseListener);
 
         adicionarMembroButton.addActionListener(new ActionListener() {
             @Override
