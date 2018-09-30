@@ -64,7 +64,8 @@ public class GUI extends JFrame implements Observer {
                     if (index >= 0) {
                         //Object o = list1.getModel().getElementAt(index);
                         //System.out.println("Double-clicked on: " + o.toString());
-                        Cotas nova = new Cotas();
+                        Object selected = list1.getModel().getElementAt(index);
+                        Cotas nova = new Cotas(selected);
                         nova.setVisible(true);
                     }
                 }
