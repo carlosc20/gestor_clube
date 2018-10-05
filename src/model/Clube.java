@@ -15,8 +15,6 @@ public class Clube extends Observable {
     }
 
 
-
-
     public Map<Integer, Aluno> getAlunos(){
         HashMap<Integer,Aluno> res = new HashMap<>();
         for(Aluno a : this.alunos.values()) {
