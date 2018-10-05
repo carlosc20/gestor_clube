@@ -21,6 +21,8 @@ public class GUI extends JFrame implements Observer {
     private JButton adicionarMembroButton;
     private JList list1;
     private JButton removerMembroButton;
+    private JTable table1;
+
     private Clube modelFacade;
 
 
@@ -36,6 +38,8 @@ public class GUI extends JFrame implements Observer {
         this.setVisible(true);
 
         this.modelFacade = model;
+        this.modelFacade = new Clube();
+        this.modelFacade.addObserver(this);
 
         // lista de membros
         DefaultListModel<String> model1 = new DefaultListModel<>();
@@ -128,6 +132,6 @@ public class GUI extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        // TODO: coisas
     }
 }

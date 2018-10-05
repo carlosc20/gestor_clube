@@ -1,5 +1,7 @@
 package model;
 
+import view.GUI;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Observable;
@@ -11,7 +13,9 @@ public class Clube extends Observable {
     // Construtor
 
     public Clube() {
+
         this.alunos = new HashMap<>();
+
     }
 
 
@@ -40,32 +44,36 @@ public class Clube extends Observable {
 
     /**
      * Adicionar um membro.
-     * Se o membro já existe, é substituido.
+     * Se o membro já existe, não faz nada
      */
+    /*
     public void addAluno(Aluno a){
 
-    /*
-        if (!update) {
+        Aluno copia = a.clone();
+        int num = a.getNumero();
+        boolean existe = alunos.containsKey(num);
+        if(!existe) {
+            alunos.put(num, copia);
             this.setChanged();
             this.notifyObservers();
         }
+
+        System.out.println("Aluno adicionado" + a.getNome());
+    }
     */
-        System.out.println("ola");
-    }
 
-/*
+    /*
+    public void delAluno(int num) throws ClubeException {
 
-    public void delAluno(String num) throws TurmaException {
-        if (!this.turma.containsKey(num)) {
-            StringBuffer sb = new StringBuffer("Aluno ");
-            sb.append(num);
-            sb.append(" inexistente!");
-            throw new TurmaException(sb.toString());
+        if (!alunos.containsKey(num)) {
+
+            throw new ClubeException("Aluno" + num + " inexistente");
         }
-        this.turma.remove(num);
-        this.setChanged();
-        this.notifyObservers();
+
+        alunos.remove(num);
+        setChanged();
+        notifyObservers();
     }
-*/
+    */
 
 }
