@@ -20,20 +20,24 @@ public class GUI extends JFrame implements Observer {
     private JPanel panel1;
     private JButton adicionarMembroButton;
     private JList list1;
-    private JButton removeMembroButton;
-    private ModelFacade model;
+    private JButton removerMembroButton;
+    private ModelFacade modelFacade;
 
 
 
-    public GUI(ModelFacade modelFacade){
+    public GUI(ModelFacade model){
 
+
+
+        //frame
         super("Menu");
         this.setSize(600,600);
         this.add(panel1);
         this.setVisible(true);
 
-        model = modelFacade;
+        this.modelFacade = model;
 
+        // lista de membros
         DefaultListModel<String> model1 = new DefaultListModel<>();
         list1.setModel(model1);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -41,21 +45,23 @@ public class GUI extends JFrame implements Observer {
         list1.setVisibleRowCount(4);
 
 
-
+        // membro selecionado
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!e.getValueIsAdjusting()) {
 
                     if(list1.getSelectedIndex() == -1){
-                        removeMembroButton.setEnabled(false);
+                        removerMembroButton.setEnabled(false);
                     } else {
-                        removeMembroButton.setEnabled(true);
+                        removerMembroButton.setEnabled(true);
                     }
                 }
             }
         });
 
+
+        // menu membro, duplo click
         MouseListener mouseListener = new MouseAdapter() {
             public void mouseClicked(MouseEvent mouseEvent) {
                 JList list1 = (JList) mouseEvent.getSource();
@@ -63,27 +69,30 @@ public class GUI extends JFrame implements Observer {
                     int index = list1.locationToIndex(mouseEvent.getPoint());
                     if (index >= 0) {
                         //Object o = list1.getModel().getElementAt(index);
-                        //System.out.println("Double-clicked on: " + o.toString());
                         Object selected = list1.getModel().getElementAt(index);
-                        Cotas nova = new Cotas(selected);
+                        Cotas nova = new Cotas(modelFacade);
                         nova.setVisible(true);
+
                     }
                 }
             }
         };
         list1.addMouseListener(mouseListener);
 
+
+        // adicionar membro
         adicionarMembroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model1.addElement("Ola");
 
-                model.addMembro("",0);
+                Adicionar nova = new Adicionar();
 
             }
         });
 
-        removeMembroButton.addActionListener(new ActionListener() {
+
+        // remover membro
+        removerMembroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -93,7 +102,7 @@ public class GUI extends JFrame implements Observer {
                 int size = model1.getSize();
 
                 if(size <= 0){
-                    removeMembroButton.setEnabled(false);
+                    removerMembroButton.setEnabled(false);
                 } else {
                     if(index == size){
                         index--;

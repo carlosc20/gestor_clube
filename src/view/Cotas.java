@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 
 public class Cotas extends JFrame {
+
     private JPanel panel1;
 
 
