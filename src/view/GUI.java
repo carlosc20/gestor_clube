@@ -1,6 +1,6 @@
 package view;
 
-import model.ModelFacade;
+import model.Clube;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -21,11 +21,11 @@ public class GUI extends JFrame implements Observer {
     private JButton adicionarMembroButton;
     private JList list1;
     private JButton removerMembroButton;
-    private ModelFacade modelFacade;
+    private Clube modelFacade;
 
 
 
-    public GUI(ModelFacade model){
+    public GUI(Clube model){
 
 
 
@@ -66,6 +66,7 @@ public class GUI extends JFrame implements Observer {
             public void mouseClicked(MouseEvent mouseEvent) {
                 JList list1 = (JList) mouseEvent.getSource();
                 if (mouseEvent.getClickCount() == 2) {
+                    // TODO: editar dados
                     int index = list1.locationToIndex(mouseEvent.getPoint());
                     if (index >= 0) {
                         //Object o = list1.getModel().getElementAt(index);

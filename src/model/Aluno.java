@@ -1,11 +1,11 @@
 package model;
 
-public class Membro {
+public class Aluno {
 
     private String nome;
     private int numero;
 
-    public Membro() {
+    public Aluno() {
 
     }
 

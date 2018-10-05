@@ -4,29 +4,46 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Observable;
 
-public class Clube extends Observable implements ModelFacade {
+public class Clube extends Observable {
 
-    private Map<String,Membro> membrosPorNome;
-    private Map<Integer,Membro> membrosPorNum;
+    private Map<Integer,Aluno> alunos;
 
     // Construtor
 
     public Clube() {
-        this.membrosPorNome = new HashMap<>();
-        this.membrosPorNum = new HashMap<>();
+        this.alunos = new HashMap<>();
     }
+
+
+
+
+    public Map<Integer, Aluno> getAlunos(){
+        // TODO: clone
+        return alunos;
+    }
+
+    public void pagarQuota(Integer numero, Double valor){
+        // TODO: clone
+
+    }
+
+    public Aluno getAluno(int num){
+        // TODO: clone, exception?
+
+        Aluno a = this.alunos.get(num);
+        return a; //.clone();
+
+
+
+    }
+
 
     /**
      * Adicionar um membro.
      * Se o membro já existe, é substituido.
      */
-    @Override
-    public void addMembro(String nome, int numero) {
-        //Membro m = new Membro(nome, numero);
-        Membro m = new Membro();
-        boolean update = this.membrosPorNum.containsKey(numero);
-        this.membrosPorNum.put(numero,m);
-        this.membrosPorNome.put(nome,m);
+    public void addAluno(Aluno a){
+
     /*
         if (!update) {
             this.setChanged();
@@ -36,22 +53,7 @@ public class Clube extends Observable implements ModelFacade {
         System.out.println("ola");
     }
 
-
 /*
-    public Membro getMembroPorNr(String num) throws ClubeException {
-
-        try {
-            Membro a = this.membrosPorNum.get(num);
-            return (Aluno)a.clone();
-        }
-        catch (NullPointerException e) {
-            StringBuffer sb = new StringBuffer("Aluno ");
-            sb.append(num);
-            sb.append(" inexistente!");
-            throw new TurmaException(sb.toString());
-        }
-    }
-
 
     public void delAluno(String num) throws TurmaException {
         if (!this.turma.containsKey(num)) {

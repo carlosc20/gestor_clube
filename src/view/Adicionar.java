@@ -1,6 +1,6 @@
 package view;
 
-import model.ModelFacade;
+import model.Clube;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,7 @@ public class Adicionar extends JFrame{
     private JLabel warningLabel;
 
     private JFrame isto;
-    private ModelFacade modelFacade;
+    private Clube modelFacade;
 
     public Adicionar() {
         super("Adicionar Membro");
