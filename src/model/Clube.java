@@ -19,11 +19,12 @@ public class Clube extends Observable {
     }
 
 
-
-
     public Map<Integer, Aluno> getAlunos(){
-        // TODO: clone
-        return alunos;
+        HashMap<Integer,Aluno> res = new HashMap<>();
+        for(Aluno a : this.alunos.values()) {
+            res.put(a.getNumero(),a.clone());
+        }
+        return res;
     }
 
     public void pagarQuota(Integer numero, Double valor){
