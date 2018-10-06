@@ -1,8 +1,10 @@
 package model;
 
 import data.FacadeData;
+import exception.AlunoNaoExisteException;
 import view.GUI;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
@@ -44,14 +46,15 @@ public class Clube extends Observable implements Serializable {
 
     }
 
-    public Aluno getAluno(int num){
-        // TODO: clone, exception?
+    public Aluno getAluno(int num) throws exception.AlunoNaoExisteException {
+        // TODO: exception?
 
         Aluno a = this.alunos.get(num);
-        return a; //.clone();
-
-
-
+        if(a == null) {
+            throw new exception.AlunoNaoExisteException(num);
+        } else {
+            return a.clone();
+        }
     }
 
 
@@ -59,34 +62,38 @@ public class Clube extends Observable implements Serializable {
      * Adicionar um membro.
      * Se o membro já existe, não faz nada
      */
-    /*
-    public void addAluno(Aluno a){
+    public void addAluno(Aluno a) throws exception.AlunoJaExisteException, IOException {
 
         Aluno copia = a.clone();
         int num = a.getNumero();
-        boolean existe = alunos.containsKey(num);
-        if(!existe) {
-            alunos.put(num, copia);
-            this.setChanged();
-            this.notifyObservers();
+
+        Aluno aluno = alunos.putIfAbsent(num, copia);
+        if(aluno != null) {
+            throw new exception.AlunoJaExisteException(num);
         }
+
+        data.saveState(this);
+        this.setChanged();
+        this.notifyObservers();
 
         System.out.println("Aluno adicionado" + a.getNome());
     }
-    */
 
-    /*
-    public void delAluno(int num) throws ClubeException {
 
-        if (!alunos.containsKey(num)) {
+    public void delAluno(int num) throws exception.AlunoNaoExisteException, IOException {
 
-            throw new ClubeException("Aluno" + num + " inexistente");
+        Aluno aluno = alunos.remove(num);
+        data.saveState(this);
+
+        if (aluno == null) {
+            throw new exception.AlunoNaoExisteException(num);
         }
 
-        alunos.remove(num);
         setChanged();
         notifyObservers();
+
+        System.out.println("Aluno removido" + aluno.getNome());
     }
-    */
+
 
 }
