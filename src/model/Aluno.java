@@ -40,6 +40,10 @@ public class Aluno implements Serializable {
             }
         return res;
     }
+    public void addCota(double valor){
+        Cota c = new Cota(valor);
+        this.cotas.add(c);
+    }
 
     public String getCurso() {
         return curso;

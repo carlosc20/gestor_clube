@@ -40,8 +40,9 @@ public class Clube extends Observable implements Serializable {
     }
 
     public void pagarQuota(Integer numero, Double valor){
-        // TODO: clone
-
+        Aluno a = alunos.get(numero);
+        a.addCota(valor);
+        alunos.put(numero, a);
     }
 
     public Aluno getAluno(int num) throws AlunoNaoExisteException {
