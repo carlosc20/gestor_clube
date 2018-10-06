@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Aluno {
+public class Aluno implements Serializable {
 
     private String nome;
     private int numero;
@@ -39,6 +40,10 @@ public class Aluno {
             }
         return res;
     }
+    public void addCota(double valor){
+        Cota c = new Cota(valor);
+        this.cotas.add(c);
+    }
 
     public String getCurso() {
         return curso;
@@ -59,6 +64,7 @@ public class Aluno {
     public int getNumero(){
         return numero;
     }
+
     public Aluno clone(){
         return new Aluno(this);
     }

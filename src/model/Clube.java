@@ -1,21 +1,35 @@
 package model;
 
+import data.FacadeData;
+import exception.AlunoNaoExisteException;
 import view.GUI;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Observable;
 
-public class Clube extends Observable {
+public class Clube extends Observable implements Serializable {
 
+    private FacadeData data;
     private Map<Integer,Aluno> alunos;
 
     // Construtor
 
     public Clube() {
 
-        this.alunos = new HashMap<>();
+        Clube clube;
+        data = FacadeData.getInstance();
 
+        try {
+            clube = (Clube) data.accessState();
+            this.alunos = clube.getAlunos();
+        } catch (Exception e) {
+            this.alunos = new HashMap<>();
+        }
+
+        System.out.println(this.alunos);
     }
 
     /**
@@ -35,18 +49,21 @@ public class Clube extends Observable {
      * Se o membro já existe, não faz nada
      */
     public void pagarQuota(Integer numero, Double valor){
-        // TODO: clone
-
+        Aluno a = alunos.get(numero);
+        a.addCota(valor);
+        alunos.put(numero, a);
     }
 
-    /**
-     * Adicionar um membro.
-     * Se o membro já existe, não faz nada
-     */
-    public Aluno getAluno(int num){
+
+    public Aluno getAluno(int num) throws exception.AlunoNaoExisteException {
         // TODO: exception?
 
-        return alunos.get(num).clone();
+        Aluno a = this.alunos.get(num);
+        if(a == null) {
+            throw new exception.AlunoNaoExisteException(num);
+        } else {
+            return a.clone();
+        }
     }
 
 
@@ -54,33 +71,40 @@ public class Clube extends Observable {
      * Adicionar um membro.
      * Se o membro já existe, não faz nada
      */
-    public void addAluno(Aluno a){
+    public void addAluno(Aluno a) throws exception.AlunoJaExisteException, IOException {
+
 
         Aluno copia = a.clone();
         int num = a.getNumero();
-        boolean existe = alunos.containsKey(num);
-        if(!existe) {
-            alunos.put(num, copia);
-            this.setChanged();
-            this.notifyObservers();
+
+        Aluno aluno = alunos.putIfAbsent(num, copia);
+        if(aluno != null) {
+            throw new exception.AlunoJaExisteException(num);
         }
+
+        data.saveState(this);
+        this.setChanged();
+        this.notifyObservers();
 
         System.out.println("Aluno adicionado" + a.getNome());
     }
 
 
-    /*
-    public void delAluno(int num) throws ClubeException {
 
-        if (!alunos.containsKey(num)) {
+    public void delAluno(int num) throws exception.AlunoNaoExisteException, IOException {
 
-            throw new ClubeException("Aluno" + num + " inexistente");
+        Aluno aluno = alunos.remove(num);
+        data.saveState(this);
+
+        if (aluno == null) {
+            throw new exception.AlunoNaoExisteException(num);
         }
 
-        alunos.remove(num);
         setChanged();
         notifyObservers();
+
+        System.out.println("Aluno removido" + aluno.getNome());
     }
-    */
+
 
 }

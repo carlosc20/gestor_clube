@@ -1,14 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Cota {
+public class Cota implements Serializable {
     private LocalDate data;
-    private int valor;
+    private double valor;
 
-    public Cota(){
+    public Cota(double valor){
         this.data = LocalDate.now();
-        this.valor = 5;
+        this.valor = valor;
     }
     public Cota(Cota c){
         this.data = c.getData();
@@ -19,7 +20,7 @@ public class Cota {
         return data;
     }
 
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
 
