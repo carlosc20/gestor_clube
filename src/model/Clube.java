@@ -1,8 +1,6 @@
 package model;
 
 import data.FacadeData;
-import exception.AlunoNaoExisteException;
-import view.GUI;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -46,12 +44,12 @@ public class Clube extends Observable implements Serializable {
 
     }
 
-    public Aluno getAluno(int num) throws exception.AlunoNaoExisteException {
+    public Aluno getAluno(int num) throws AlunoNaoExisteException {
         // TODO: exception?
 
         Aluno a = this.alunos.get(num);
         if(a == null) {
-            throw new exception.AlunoNaoExisteException(num);
+            throw new AlunoNaoExisteException(num);
         } else {
             return a.clone();
         }
@@ -62,37 +60,33 @@ public class Clube extends Observable implements Serializable {
      * Adicionar um membro.
      * Se o membro já existe, não faz nada
      */
-    public void addAluno(Aluno a) throws exception.AlunoJaExisteException, IOException {
+    public void addAluno(Aluno a) throws AlunoJaExisteException, IOException {
 
         Aluno copia = a.clone();
         int num = a.getNumero();
 
         Aluno aluno = alunos.putIfAbsent(num, copia);
         if(aluno != null) {
-            throw new exception.AlunoJaExisteException(num);
+            throw new AlunoJaExisteException(num);
         }
 
         data.saveState(this);
         this.setChanged();
         this.notifyObservers();
-
-        System.out.println("Aluno adicionado" + a.getNome());
     }
 
 
-    public void delAluno(int num) throws exception.AlunoNaoExisteException, IOException {
+    public void delAluno(int num) throws AlunoNaoExisteException, IOException {
 
         Aluno aluno = alunos.remove(num);
         data.saveState(this);
 
         if (aluno == null) {
-            throw new exception.AlunoNaoExisteException(num);
+            throw new AlunoNaoExisteException(num);
         }
 
         setChanged();
         notifyObservers();
-
-        System.out.println("Aluno removido" + aluno.getNome());
     }
 
 

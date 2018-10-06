@@ -1,4 +1,4 @@
-package exception;
+package model;
 
 public class AlunoNaoExisteException extends Exception {
     public AlunoNaoExisteException(String message) {
