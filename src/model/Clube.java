@@ -18,7 +18,10 @@ public class Clube extends Observable {
 
     }
 
-
+    /**
+     * Adicionar um membro.
+     * Se o membro já existe, não faz nada
+     */
     public Map<Integer, Aluno> getAlunos(){
         HashMap<Integer,Aluno> res = new HashMap<>();
         for(Aluno a : this.alunos.values()) {
@@ -27,19 +30,23 @@ public class Clube extends Observable {
         return res;
     }
 
+    /**
+     * Adicionar um membro.
+     * Se o membro já existe, não faz nada
+     */
     public void pagarQuota(Integer numero, Double valor){
         // TODO: clone
 
     }
 
+    /**
+     * Adicionar um membro.
+     * Se o membro já existe, não faz nada
+     */
     public Aluno getAluno(int num){
-        // TODO: clone, exception?
+        // TODO: exception?
 
-        Aluno a = this.alunos.get(num);
-        return a; //.clone();
-
-
-
+        return alunos.get(num).clone();
     }
 
 
@@ -47,7 +54,6 @@ public class Clube extends Observable {
      * Adicionar um membro.
      * Se o membro já existe, não faz nada
      */
-    /*
     public void addAluno(Aluno a){
 
         Aluno copia = a.clone();
@@ -61,7 +67,7 @@ public class Clube extends Observable {
 
         System.out.println("Aluno adicionado" + a.getNome());
     }
-    */
+
 
     /*
     public void delAluno(int num) throws ClubeException {

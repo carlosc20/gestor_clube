@@ -19,6 +19,7 @@ public class Adicionar extends JFrame{
     private Clube modelFacade;
 
     public Adicionar() {
+
         super("Adicionar Membro");
         this.add(mainPanel);
         this.setSize(400,200);
