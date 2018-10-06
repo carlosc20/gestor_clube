@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Cota {
+public class Cota implements Serializable {
     private LocalDate data;
     private int valor;
 

@@ -1,21 +1,33 @@
 package model;
 
+import data.FacadeData;
 import view.GUI;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Observable;
 
-public class Clube extends Observable {
+public class Clube extends Observable implements Serializable {
 
+    private FacadeData data;
     private Map<Integer,Aluno> alunos;
 
     // Construtor
 
     public Clube() {
 
-        this.alunos = new HashMap<>();
+        Clube clube;
+        data = FacadeData.getInstance();
 
+        try {
+            clube = (Clube) data.accessState();
+            this.alunos = clube.getAlunos();
+        } catch (Exception e) {
+            this.alunos = new HashMap<>();
+        }
+
+        System.out.println(this.alunos);
     }
 
 
