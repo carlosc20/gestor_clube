@@ -107,13 +107,17 @@ public class Clube implements Serializable {
         Aluno i = new Aluno("marc", 10, "mii", LocalDate.now(), "");
         Clube c = new Clube();
 
-        try{c.addAluno(j); c.addAluno(i); c.addAluno((w));}
+        try{c.addAluno(j); c.addAluno(i); c.addAluno((w)); c.pagarQuota(8,5.0); c.pagarQuota(9,10.0);
+        c.pagarQuota(10, 20.0);}
         catch(AlunoJaExisteException e){}
         catch (IOException e){}
 
         Map<Integer, Aluno> a = c.getAlunos();
         for(Aluno al : a.values()) {
             System.out.println(al.getNome());
+            for(Cota cot : al.getCotas()){
+                System.out.println(cot.getValor());
+            }
         }
     }
 }
