@@ -1,8 +1,6 @@
 package view;
 
 import model.FacadeModel;
-import model.AlunoJaExisteException;
-import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -11,9 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -27,8 +23,8 @@ public class GUI extends JFrame implements Observer {
     private JList list1;
     private JButton removerMembroButton;
 
-    private FacadeModel modelFacade; // mudei o nome
-    private DefaultListModel<String> model1; //meti pq causa de uma função
+    private FacadeModel modelFacade;
+    private DefaultListModel<String> model1;
     private ArrayList<Integer> listaAlunos;
 
     private Adicionar adicionarFrame;
@@ -50,15 +46,14 @@ public class GUI extends JFrame implements Observer {
         list1.setModel(model1);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list1.setLayoutOrientation(JList.VERTICAL);
-        list1.setVisibleRowCount(4);
 
 
-        // membro selecionado
+
+        // desbloqueia/bloqueia o botão de remover quando existem/não existem membros
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!e.getValueIsAdjusting()) {
-
                     if(list1.getSelectedIndex() == -1){
                         removerMembroButton.setEnabled(false);
                     } else {
@@ -79,9 +74,8 @@ public class GUI extends JFrame implements Observer {
                     if (index >= 0) {
                         //Object o = list1.getModel().getElementAt(index);
                         Object selected = list1.getModel().getElementAt(index);
-                        Cotas nova = new Cotas(listaAlunos.get(index));
+                        Editar nova = new Editar(listaAlunos.get(index));
                         nova.setVisible(true);
-
                     }
                 }
             }
@@ -111,7 +105,7 @@ public class GUI extends JFrame implements Observer {
                 int index = list1.getSelectedIndex();
                 /*
                 model1.remove(index);
-                // TODO: remover no model
+
                 int size = model1.getSize();
 
                 if(size <= 0){

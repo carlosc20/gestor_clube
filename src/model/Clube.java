@@ -80,6 +80,13 @@ public class Clube implements Serializable {
         data.saveState(this); //Guarda o estado atual do clube
     }
 
+    public void editAluno(Aluno a) throws IOException{
+        Aluno copia = a.clone();
+        int num = a.getNumero();
+
+        alunos.put(num, a);
+        data.saveState(this);
+    }
 
 
     public void delAluno(int num) throws AlunoNaoExisteException, IOException {
