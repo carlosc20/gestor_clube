@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Observable;
 
 public class Clube implements Serializable {
 
