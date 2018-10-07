@@ -121,7 +121,7 @@ public class GUI extends JFrame implements Observer {
 
                 ArrayList<Integer> alunos = new ArrayList<>(modelFacade.getAlunosNumero());
                 try {
-                    modelFacade.delAluno(alunos.get(index));
+                    modelFacade.delAluno(alunos.get(index + 1));
                 } catch (Exception f) {
                     System.out.println("Erro ao remover o aluno");
                 }
