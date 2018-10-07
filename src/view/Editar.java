@@ -6,6 +6,7 @@ import model.FacadeModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Editar extends JFrame {
@@ -47,8 +48,19 @@ public class Editar extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO: editar dados
                 String novoNome = textFieldNome.getText();
-
+                try{
+                    int numero = Integer.parseInt(textFieldNumero.getText());
+                    modelFacade.editAluno(novoNome, numero, "", LocalDate.now(),"" );
+                    isto.dispose();
+                }
+                catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(isto, "O número tem de estar num formato adequado.","Erro", JOptionPane.WARNING_MESSAGE);
+                }
+                catch (IOException i) {
+                    JOptionPane.showMessageDialog(isto, "Não foi possível guardar.","Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
+
         });
     }
 }
