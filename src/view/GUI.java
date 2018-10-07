@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,15 +30,17 @@ public class GUI extends JFrame implements Observer {
     private ArrayList<Integer> listaAlunos;
 
     private Adicionar adicionarFrame;
+    private JFrame isto;
 
     public GUI(){
-
 
         //frame
         super("Menu");
         this.setSize(500,600);
         this.add(panel1);
         this.setVisible(true);
+
+        isto = this;
 
         this.modelFacade = FacadeModel.getInstance();
         this.modelFacade.addObserver(this);
@@ -104,19 +107,6 @@ public class GUI extends JFrame implements Observer {
             public void actionPerformed(ActionEvent e) {
 
                 int index = list1.getSelectedIndex();
-                /*
-                model1.remove(index);
-
-                int size = model1.getSize();
-
-                if(size <= 0){
-                    removerMembroButton.setEnabled(false);
-                } else {
-                    if(index == size){
-                        index--;
-                    }
-                }
-                */
 
                 list1.setSelectedIndex(index);
                 list1.ensureIndexIsVisible(index);
@@ -124,7 +114,7 @@ public class GUI extends JFrame implements Observer {
                 try {
                     modelFacade.delAluno(listaAlunos.get(index));
                 } catch (Exception f) {
-                    System.out.println("Erro ao remover o aluno");
+                    JOptionPane.showMessageDialog(isto, "Não foi possível remover o aluno.","Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -145,7 +135,7 @@ public class GUI extends JFrame implements Observer {
                     sb.append(" (").append(a).append(")");
                     this.model1.addElement(sb.toString());
                 } catch (AlunoNaoExisteException e) {
-                    //Continuar
+
                 }
             }
         }
@@ -156,7 +146,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+        // place custom component creation code here
     }
 
     @Override
