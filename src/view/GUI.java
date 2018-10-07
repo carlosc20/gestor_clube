@@ -1,8 +1,6 @@
 package view;
 
 import model.FacadeModel;
-import model.AlunoJaExisteException;
-import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -11,9 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -78,7 +74,7 @@ public class GUI extends JFrame implements Observer {
                         //Object o = list1.getModel().getElementAt(index);
                         Object selected = list1.getModel().getElementAt(index);
                         ArrayList<Integer> alunos = new ArrayList<>(modelFacade.getAlunosNumero());
-                        Cotas nova = new Cotas(alunos.get(index));
+                        Editar nova = new Editar(alunos.get(index));
                         nova.setVisible(true);
 
                     }
