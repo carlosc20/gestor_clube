@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -40,12 +41,13 @@ public class Cotas extends JFrame implements Observer {
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list1.setLayoutOrientation(JList.VERTICAL);
 
+        fillJListCotas();
 
         pagarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    modelFacade.pagarCota(numero, 5.0);
+                    modelFacade.pagarCota(id, 5.0);
                 }catch (IOException i){System.out.println("erro");}
             }
         });
@@ -57,10 +59,15 @@ public class Cotas extends JFrame implements Observer {
         });
     }
     public void fillJListCotas (){
+        this.modelQ.clear();
         try {
-            ArrayList<Double> c = modelFacade.getCotasValor(id);
-                for (double a : c) {
-                    this.modelQ.addElement(String.valueOf(a));
+            //ArrayList<Double> valores = modelFacade.getCotasValor(id);
+            ArrayList<LocalDate> datas = modelFacade.getCotasData(id);
+                for (LocalDate a : datas) {
+                    //this.modelQ.addElement(String.valueOf(a));
+                    StringBuilder sb = new StringBuilder(a.toString());
+                    sb.append(" (").append("5.0").append(")");
+                    this.modelQ.addElement(sb.toString());
                 }
         }catch(AlunoNaoExisteException a) {System.out.println("erro");}
     }

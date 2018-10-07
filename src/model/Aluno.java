@@ -32,7 +32,7 @@ public class Aluno implements Serializable {
 
     public ArrayList<Cota> getCotas() {
         ArrayList<Cota> res = new ArrayList<Cota>();
-            for(Cota c : res){
+            for(Cota c : this.cotas){
                 res.add(c.clone());
             }
         return res;

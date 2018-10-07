@@ -53,6 +53,7 @@ public class FacadeModel extends Observable {
            ArrayList<Double> d = new ArrayList<Double>();
            for(Cota cota : c){
                d.add(cota.getValor());
+               System.out.println(cota.getValor());
            }
            return d;
     }
