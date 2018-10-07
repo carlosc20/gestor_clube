@@ -15,7 +15,6 @@ public class Clube implements Serializable {
     private Map<Integer,Aluno> alunos;
 
     // Construtor
-
     public Clube() {
 
         Clube clube;
@@ -31,7 +30,10 @@ public class Clube implements Serializable {
         System.out.println(this.alunos);
     }
 
-
+    /**
+     * Adicionar um membro.
+     * Se o membro já existe, não faz nada
+     */
     public Map<Integer, Aluno> getAlunos(){
         HashMap<Integer,Aluno> res = new HashMap<>();
         for(Aluno a : this.alunos.values()) {
@@ -40,14 +42,18 @@ public class Clube implements Serializable {
         return res;
     }
 
+    /**
+     * Adicionar um membro.
+     * Se o membro já existe, não faz nada
+     */
     public void pagarQuota(Integer numero, Double valor){
         Aluno a = alunos.get(numero);
         a.addCota(valor);
         alunos.put(numero, a);
     }
 
+
     public Aluno getAluno(int num) throws AlunoNaoExisteException {
-        // TODO: exception?
 
         Aluno a = this.alunos.get(num);
         if(a == null) {
@@ -74,6 +80,7 @@ public class Clube implements Serializable {
 
         data.saveState(this); //Guarda o estado atual do clube
     }
+
 
 
     public void delAluno(int num) throws AlunoNaoExisteException, IOException {

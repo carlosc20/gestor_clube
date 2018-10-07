@@ -26,11 +26,11 @@ public class GUI extends JFrame implements Observer {
     private JButton adicionarMembroButton;
     private JList list1;
     private JButton removerMembroButton;
-    private JTable table1;
 
     private FacadeModel modelFacade; // mudei o nome
     private DefaultListModel<String> model1; //meti pq causa de uma função
 
+    private Adicionar adicionarFrame;
 
     public GUI(FacadeModel model){
 
@@ -68,8 +68,8 @@ public class GUI extends JFrame implements Observer {
         });
 
 
-        // menu membro, duplo click
-        MouseListener mouseListener = new MouseAdapter() {
+        // janela editar membro, duplo click
+        list1.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent mouseEvent) {
                 JList list1 = (JList) mouseEvent.getSource();
                 if (mouseEvent.getClickCount() == 2) {
@@ -84,15 +84,19 @@ public class GUI extends JFrame implements Observer {
                     }
                 }
             }
-        };
-        list1.addMouseListener(mouseListener);
+        });
 
 
-        // adicionar membro
+        // janela adicionar membro
         adicionarMembroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Adicionar nova = new Adicionar(modelFacade); //mudei o contrutor
+
+                if (adicionarFrame != null && adicionarFrame.isDisplayable()) { //se já existe, tras para a frente
+                    adicionarFrame.toFront();
+                } else {
+                    adicionarFrame = new Adicionar();
+                }
 
             }
         });
