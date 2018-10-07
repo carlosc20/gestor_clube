@@ -13,9 +13,6 @@ public class Aluno implements Serializable {
     private String morada;
     private ArrayList<Cota> cotas;
 
-
-    //public Aluno() {}
-
     public Aluno(String nome, int numero, String curso, LocalDate ano, String morada){
         this.nome = nome;
         this.numero = numero;

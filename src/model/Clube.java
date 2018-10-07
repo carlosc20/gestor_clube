@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Observable;
 
-public class Clube extends Observable implements Serializable {
+public class Clube implements Serializable {
 
     private FacadeData data;
     private Map<Integer,Aluno> alunos;
@@ -68,16 +68,11 @@ public class Clube extends Observable implements Serializable {
         int num = a.getNumero();
 
         Aluno aluno = alunos.putIfAbsent(num, copia);
-        try {
-            if(aluno != null) {
-                throw new AlunoJaExisteException(num);
-            }
-
-            data.saveState(this);
-        } finally {
-            this.setChanged();
-            this.notifyObservers();
+        if(aluno != null) { //Aluno já existe
+            throw new AlunoJaExisteException(num);
         }
+
+        data.saveState(this); //Guarda o estado atual do clube
     }
 
 
@@ -85,16 +80,11 @@ public class Clube extends Observable implements Serializable {
 
         Aluno aluno = alunos.remove(num);
 
-        try {
-            data.saveState(this);
-
-            if (aluno == null) {
-                throw new AlunoNaoExisteException(num);
-            }
-        } finally {
-            setChanged();
-            notifyObservers();
+        if (aluno == null) { //Aluno não existe
+            throw new AlunoNaoExisteException(num);
         }
+
+        data.saveState(this); //Guarda o estado atual do clube
     }
 
     public static void main(String args[]){

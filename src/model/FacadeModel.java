@@ -17,7 +17,12 @@ public class FacadeModel extends Observable {
     private FacadeModel() {}
 
     public void addAluno(String nome, int numero, String curso, LocalDate ano, String morada) throws AlunoJaExisteException, IOException {
-        clube.addAluno(new Aluno(nome, numero, curso, ano, morada));
+        try {
+            clube.addAluno(new Aluno(nome, numero, curso, ano, morada));
+        } finally {
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public Set<Integer> getAlunosNumero() {
@@ -46,6 +51,11 @@ public class FacadeModel extends Observable {
     }
 
     public void delAluno(int numero) throws AlunoNaoExisteException, IOException {
-        clube.delAluno(numero);
+        try {
+            clube.delAluno(numero);
+        } finally {
+            setChanged();
+            notifyObservers();
+        }
     }
 }
