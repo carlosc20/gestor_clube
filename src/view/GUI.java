@@ -49,10 +49,10 @@ public class GUI extends JFrame implements Observer {
         list1.setModel(model1);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list1.setLayoutOrientation(JList.VERTICAL);
-        list1.setVisibleRowCount(4);
 
 
-        //
+
+        // desbloqueia/bloqueia o botão de remover quando existem/não existem membros
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
