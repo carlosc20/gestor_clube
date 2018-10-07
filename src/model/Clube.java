@@ -46,8 +46,8 @@ public class Clube implements Serializable {
      * Adicionar um membro.
      * Se o membro já existe, não faz nada
      */
-    public void pagarQuota(Integer numero, Double valor) throws IOException{
-        Aluno a = alunos.get(numero);
+    public void pagarQuota(Integer numero, Double valor) throws IOException, AlunoNaoExisteException {
+        Aluno a = this.getAluno(numero);
         a.addCota(valor);
         alunos.put(numero, a);
         data.saveState(this);
@@ -104,25 +104,5 @@ public class Clube implements Serializable {
         }
 
         data.saveState(this); //Guarda o estado atual do clube
-    }
-
-    public static void main(String args[]){
-        Aluno j = new Aluno("marco", 8, "mie", LocalDate.now(), "");
-        Aluno w = new Aluno("maro", 9, "mie", LocalDate.now(), "");
-        Aluno i = new Aluno("marc", 10, "mii", LocalDate.now(), "");
-        Clube c = new Clube();
-
-        try{c.addAluno(j); c.addAluno(i); c.addAluno((w)); c.pagarQuota(8,5.0); c.pagarQuota(9,10.0);
-        c.pagarQuota(10, 20.0);}
-        catch(AlunoJaExisteException e){}
-        catch (IOException e){}
-
-        Map<Integer, Aluno> a = c.getAlunos();
-        for(Aluno al : a.values()) {
-            System.out.println(al.getNome());
-            for(Cota cot : al.getCotas()){
-                System.out.println(cot.getValor());
-            }
-        }
     }
 }

@@ -36,7 +36,7 @@ public class FacadeModel extends Observable {
 
     }
 
-    public void pagarCota(int numero, double valor) throws IOException{
+    public void pagarCota(int numero, double valor) throws IOException, AlunoNaoExisteException {
         try{
             clube.pagarQuota(numero, valor);
         } finally {

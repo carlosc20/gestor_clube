@@ -54,7 +54,12 @@ public class Cotas extends JFrame implements Observer {
             public void actionPerformed(ActionEvent e) {
                 try{
                     modelFacade.pagarCota(id, 5.0);
-                }catch (IOException i){System.out.println("erro");}
+                } catch (IOException i) {
+                    JOptionPane.showMessageDialog(isto, "Não foi possível guardar.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } catch (AlunoNaoExisteException a) {
+                    JOptionPane.showMessageDialog(isto, "O aluno não existe.","Erro", JOptionPane.ERROR_MESSAGE);
+                    dispose();
+                }
             }
         });
         confirmarButton.addActionListener(new ActionListener() {
