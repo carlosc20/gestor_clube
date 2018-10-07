@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Clube implements Serializable {
 
@@ -24,7 +24,7 @@ public class Clube implements Serializable {
             clube = (Clube) data.accessState();
             this.alunos = clube.getAlunos();
         } catch (Exception e) {
-            this.alunos = new HashMap<>();
+            this.alunos = new LinkedHashMap<>();
         }
 
         System.out.println(this.alunos);
@@ -35,9 +35,9 @@ public class Clube implements Serializable {
      * Se o membro já existe, não faz nada
      */
     public Map<Integer, Aluno> getAlunos(){
-        HashMap<Integer,Aluno> res = new HashMap<>();
+        Map<Integer,Aluno> res = new LinkedHashMap<>();
         for(Aluno a : this.alunos.values()) {
-            res.put(a.getNumero(),a.clone());
+            res.put(a.getNumero(), a.clone());
         }
         return res;
     }
