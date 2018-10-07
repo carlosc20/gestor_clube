@@ -87,11 +87,15 @@ public class Clube implements Serializable {
 
         Aluno aluno = alunos.remove(num);
 
+        System.out.println("Tudo bem");
+
         if (aluno == null) { //Aluno não existe
             throw new AlunoNaoExisteException(num);
         }
 
+        System.out.println("Oi");
         data.saveState(this); //Guarda o estado atual do clube
+        System.out.println("Guardado com sucesso");
     }
 
     public static void main(String args[]){

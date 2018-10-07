@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
@@ -115,19 +116,28 @@ public class GUI extends JFrame implements Observer {
 
                 list1.setSelectedIndex(index);
                 list1.ensureIndexIsVisible(index);
+
+                ArrayList<Integer> alunos = new ArrayList<>(modelFacade.getAlunosNumero());
+                try {
+                    modelFacade.delAluno(alunos.get(index));
+                } catch (Exception f) {
+                    System.out.println("Erro ao remover o aluno");
+                }
             }
         });
     }
-/*
-    public void fillJList(){
+
+    private void fillJList(){
+        this.model1.clear();
+
         Set<Integer> numeros = modelFacade.getAlunosNumero();
         for(int a : numeros) {
-            this.model1.addElement(String.valueOf("a"));
+            this.model1.addElement(String.valueOf(a));
         }
     }
-*/
+
     public static void main(String[] args) {
-        new GUI(FacadeModel.getInstance());
+        new GUI(FacadeModel.getInstance()).fillJList();
     }
 
     private void createUIComponents() {
@@ -137,6 +147,6 @@ public class GUI extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Atualizou");
-       // fillJList();
+       fillJList();
     }
 }
