@@ -1,6 +1,7 @@
 package model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Set;
@@ -21,7 +22,7 @@ public class FacadeModel extends Observable {
             clube.addAluno(new Aluno(nome, numero, curso, ano, morada));
         } finally {
             setChanged();
-            notifyObservers();
+            notifyObservers(0);
         }
     }
 
@@ -30,7 +31,7 @@ public class FacadeModel extends Observable {
             clube.editAluno(new Aluno(nome, numero, curso, ano, morada));
         }finally {
             setChanged();
-            notifyObservers();
+            notifyObservers(0);
         }
 
     }
@@ -40,10 +41,32 @@ public class FacadeModel extends Observable {
             clube.pagarQuota(numero, valor);
         } finally {
             setChanged();
-            notifyObservers();
+            notifyObservers(1);
         }
 
     }
+    // não há emcapsulamento ou lá o que é
+    public ArrayList<Double> getCotasValor(int numero)throws AlunoNaoExisteException{
+           Aluno a = clube.getAluno(numero);
+           ArrayList<Cota> c = a.getCotas();
+
+           ArrayList<Double> d = new ArrayList<Double>();
+           for(Cota cota : c){
+               d.add(cota.getValor());
+           }
+           return d;
+    }
+    public ArrayList<LocalDate> getCotasData(int numero)throws AlunoNaoExisteException{
+        Aluno a = clube.getAluno(numero);
+        ArrayList<Cota> c = a.getCotas();
+
+        ArrayList<LocalDate> l = new ArrayList<LocalDate>();
+        for(Cota cota : c){
+            l.add(cota.getData());
+        }
+        return l;
+    }
+
 
     public Set<Integer> getAlunosNumero() {
         return clube.getAlunos().keySet();
@@ -75,7 +98,7 @@ public class FacadeModel extends Observable {
             clube.delAluno(numero);
         } finally {
             setChanged();
-            notifyObservers();
+            notifyObservers(0);
         }
     }
 }

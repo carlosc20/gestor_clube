@@ -5,6 +5,7 @@ import data.FacadeData;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Observable;
@@ -63,7 +64,6 @@ public class Clube implements Serializable {
             return a.clone();
         }
     }
-
 
     /**
      * Adicionar um membro.

@@ -153,8 +153,13 @@ public class GUI extends JFrame implements Observer {
     }
 
     @Override
+    // arg == 0 atualizar lista de alunos
+    // arg == 1 atualizar lista de cotas
     public void update(Observable o, Object arg) {
         System.out.println("Atualizou");
-        fillJList();
+        int atual = (int) arg;
+        if(atual==0)
+            fillJList();
+        else;
     }
 }
