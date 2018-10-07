@@ -17,6 +17,7 @@ public class Cotas extends JFrame implements Observer {
     private JPanel panel3;
     private JButton pagarButton;
     private JButton confirmarButton;
+    private JScrollPane scroll;
     private DefaultListModel<String> modelQ;
     private JFrame isto;
 
@@ -32,7 +33,6 @@ public class Cotas extends JFrame implements Observer {
 
         modelFacade = FacadeModel.getInstance();
         modelFacade.addObserver(this);
-
 
         // lista de cotas
         modelQ = new DefaultListModel<>();
