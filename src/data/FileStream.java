@@ -19,10 +19,10 @@ class FileStream {
         return output;
     }
 
-    void saveObject(Object alunos) throws IOException {
+    void saveObject(Object state) throws IOException {
         FileOutputStream fileOut = new FileOutputStream(this.filePath);
         ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-        objectOut.writeObject(alunos);
+        objectOut.writeObject(state);
         objectOut.close();
     }
 }

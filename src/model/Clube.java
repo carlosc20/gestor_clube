@@ -68,27 +68,33 @@ public class Clube extends Observable implements Serializable {
         int num = a.getNumero();
 
         Aluno aluno = alunos.putIfAbsent(num, copia);
-        if(aluno != null) {
-            throw new AlunoJaExisteException(num);
-        }
+        try {
+            if(aluno != null) {
+                throw new AlunoJaExisteException(num);
+            }
 
-        data.saveState(this);
-        this.setChanged();
-        this.notifyObservers();
+            data.saveState(this);
+        } finally {
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
 
 
     public void delAluno(int num) throws AlunoNaoExisteException, IOException {
 
         Aluno aluno = alunos.remove(num);
-        data.saveState(this);
 
-        if (aluno == null) {
-            throw new AlunoNaoExisteException(num);
+        try {
+            data.saveState(this);
+
+            if (aluno == null) {
+                throw new AlunoNaoExisteException(num);
+            }
+        } finally {
+            setChanged();
+            notifyObservers();
         }
-
-        setChanged();
-        notifyObservers();
     }
 
     public static void main(String args[]){

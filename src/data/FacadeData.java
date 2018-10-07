@@ -18,6 +18,11 @@ public class FacadeData implements Serializable {
     //Recebe o estado e guarda o estado no ficheiro "data.ser"
     public void saveState(Object state) throws IOException {
         FileStream fs = new FileStream(this.filePath);
+        try {
+            fs.saveObject(state);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         fs.saveObject(state);
     }
 

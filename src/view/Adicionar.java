@@ -26,7 +26,7 @@ public class Adicionar extends JFrame{
         this.add(mainPanel);
         this.setSize(400,200);
         this.setVisible(true);
-        this.modelFacade = clube;
+        this.modelFacade = FacadeModel.getInstance();
 
         isto = this;
 
@@ -38,12 +38,15 @@ public class Adicionar extends JFrame{
                 String numeroI = textFieldNumero.getText();
 
                 if(!nomeI.equals("") || !numeroI.equals("")){
+                    // TODO: Adicionar uma caixa para os erros e verificar se é um numero valido
 
-                    int numero = Integer.parseInt(textFieldNumero.getText());
-
-                    try{clube.addAluno(nomeI, numero, "", LocalDate.now(),"" );}
-                    catch (AlunoJaExisteException a) {System.out.println("Erro");}
-                    catch (IOException i) {System.out.println("Erro");}
+                    try{
+                        int numero = Integer.parseInt(textFieldNumero.getText());
+                        modelFacade.addAluno(nomeI, numero, "", LocalDate.now(),"" );
+                    }
+                    catch (NumberFormatException n) {System.out.println("Erro 0");}
+                    catch (AlunoJaExisteException a) {System.out.println("Erro 1");}
+                    catch (IOException i) {System.out.println("Erro 2");}
 
                     isto.setVisible(false);
                     isto.dispose();
