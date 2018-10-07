@@ -18,6 +18,8 @@ public class Editar extends JFrame {
     private JButton cancelarButton;
     private JButton confirmarButton;
     private JButton cotasButton;
+    private JTextField textFieldCurso;
+    private JTextField textFieldMorada;
 
     private JFrame isto;
     private Cotas cotasFrame;
@@ -36,8 +38,12 @@ public class Editar extends JFrame {
         modelFacade = FacadeModel.getInstance();
         try {
             String nome = modelFacade.getAlunoNome(numero);
+            String curso = modelFacade.getAlunoCurso(numero);
+            String morada = modelFacade.getAlunoMorada(numero);
             textFieldNome.setText(nome);
             textFieldNumero.setText(Integer.toString(numero));
+            textFieldCurso.setText(curso);
+            textFieldMorada.setText(morada);
         } catch (AlunoNaoExisteException e) {
             this.setVisible(false);
             this.dispose();
@@ -53,11 +59,13 @@ public class Editar extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 String novoNome = textFieldNome.getText();
+                String novoCurso = textFieldCurso.getText();
+                String novoMorada = textFieldMorada.getText();
 
                 if (!novoNome.equals("")) {
                     System.out.println(novoNome);
                     try {
-                        modelFacade.editAluno(novoNome, naluno, "", LocalDate.now(), "");
+                        modelFacade.editAluno(novoNome, naluno, novoCurso, LocalDate.now(), novoMorada);
                         isto.dispose();
                     } catch (IOException i) {
                         JOptionPane.showMessageDialog(isto, "Não foi possível guardar.", "Erro", JOptionPane.ERROR_MESSAGE);

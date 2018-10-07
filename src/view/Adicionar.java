@@ -16,6 +16,8 @@ public class Adicionar extends JFrame{
     private JButton cancelarButton;
     private JButton adicionarButton;
     private JPanel mainPanel;
+    private JTextField textFieldMorada;
+    private JTextField textFieldCurso;
 
     private JFrame isto;
     private FacadeModel modelFacade;
@@ -40,7 +42,9 @@ public class Adicionar extends JFrame{
                 if(!nomeI.equals("") && !numeroI.equals("")){
                     try{
                         int numero = Integer.parseInt(textFieldNumero.getText());
-                        modelFacade.addAluno(nomeI, numero, "", LocalDate.now(),"" );
+                        String curso = textFieldCurso.getText();
+                        String morada = textFieldMorada.getText();
+                        modelFacade.addAluno(nomeI, numero, curso, LocalDate.now(),morada );
                         isto.dispose();
                     }
                     catch (NumberFormatException n) {
