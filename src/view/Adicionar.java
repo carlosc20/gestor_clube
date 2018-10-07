@@ -44,13 +44,12 @@ public class Adicionar extends JFrame{
                     try{
                         int numero = Integer.parseInt(textFieldNumero.getText());
                         modelFacade.addAluno(nomeI, numero, "", LocalDate.now(),"" );
+                        isto.setVisible(false);
+                        isto.dispose();
                     }
                     catch (NumberFormatException n) {System.out.println("Erro 0");}
                     catch (AlunoJaExisteException a) {System.out.println("Erro 1");}
                     catch (IOException i) {System.out.println("Erro 2");}
-
-                    isto.setVisible(false);
-                    isto.dispose();
 
                 }
                 else {
