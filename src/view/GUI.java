@@ -6,6 +6,7 @@ import model.FacadeModel;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -51,7 +52,10 @@ public class GUI extends JFrame implements Observer {
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list1.setLayoutOrientation(JList.VERTICAL);
 
-
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+        this.setLocation(x, y);
 
         // desbloqueia/bloqueia o botão de remover quando existem/não existem membros
         list1.addListSelectionListener(new ListSelectionListener() {

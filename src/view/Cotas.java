@@ -4,6 +4,7 @@ import model.AlunoNaoExisteException;
 import model.FacadeModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -31,6 +32,11 @@ public class Cotas extends JFrame implements Observer {
         this.setVisible(true);
         isto = this;
         id = numero;
+
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+        this.setLocation(x, y);
 
         modelFacade = FacadeModel.getInstance();
         modelFacade.addObserver(this);

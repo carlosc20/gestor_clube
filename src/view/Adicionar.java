@@ -4,6 +4,7 @@ import model.AlunoJaExisteException;
 import model.FacadeModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -31,6 +32,10 @@ public class Adicionar extends JFrame{
         this.modelFacade = FacadeModel.getInstance();
 
         isto = this;
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+        this.setLocation(x, y);
 
         adicionarButton.addActionListener(new ActionListener() {
             @Override
