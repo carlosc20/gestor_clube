@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66d12e98-8e63-4dad-9ab5-bf5001cbdb3d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/data.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Gestor_cesium/view/Adicionar$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Gestor_cesium/view/Adicionar$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Gestor_cesium/view/Adicionar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Gestor_cesium/view/GUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gestor_cesium/view/GUI$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Gestor_cesium/view/GUI$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gestor_cesium/view/GUI$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Gestor_cesium/view/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gestor_cesium/view/GUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Adicionar.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Adicionar.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Adicionar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Adicionar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,12 +56,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1471" />
+          <entry key="java" value="1476" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1471" />
+          <entry key="JAVA" value="1476" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -121,26 +112,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="86" column="11" lean-forward="true" selection-start-line="86" selection-start-column="11" selection-end-line="86" selection-end-column="11" />
+            <state relative-caret-position="211">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#1949#2634#0" expanded="true" />
                 <element signature="e#2633#2634#0" expanded="true" />
                 <element signature="e#4414#4415#0" expanded="true" />
                 <element signature="e#4476#4477#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/Adicionar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
         </entry>
@@ -193,9 +175,9 @@
         <option value="$PROJECT_DIR$/src/model/Membro.java" />
         <option value="$PROJECT_DIR$/src/model/Clube.java" />
         <option value="$PROJECT_DIR$/src/view/GUI.form" />
-        <option value="$PROJECT_DIR$/src/view/GUI.java" />
         <option value="$PROJECT_DIR$/src/view/Adicionar.form" />
         <option value="$PROJECT_DIR$/src/view/Adicionar.java" />
+        <option value="$PROJECT_DIR$/src/view/GUI.java" />
       </list>
     </option>
   </component>
@@ -271,7 +253,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538917369727" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538918730100" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -330,12 +312,12 @@
       <workItem from="1538766986061" duration="8966000" />
       <workItem from="1538862334722" duration="1204000" />
       <workItem from="1538863600925" duration="1027000" />
-      <workItem from="1538912245821" duration="4805000" />
+      <workItem from="1538912245821" duration="5549000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32450000" />
+    <option name="totallyTimeSpent" value="33194000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -350,7 +332,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16204691" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16204691" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -359,7 +341,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26681128" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26681128" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -438,19 +420,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="86" column="11" lean-forward="true" selection-start-line="86" selection-start-column="11" selection-end-line="86" selection-end-column="11" />
-          <folding>
-            <element signature="e#1949#2634#0" expanded="true" />
-            <element signature="e#2633#2634#0" expanded="true" />
-            <element signature="e#4414#4415#0" expanded="true" />
-            <element signature="e#4476#4477#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Adicionar.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
@@ -461,6 +430,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#1949#2634#0" expanded="true" />
+            <element signature="e#2633#2634#0" expanded="true" />
+            <element signature="e#4414#4415#0" expanded="true" />
+            <element signature="e#4476#4477#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

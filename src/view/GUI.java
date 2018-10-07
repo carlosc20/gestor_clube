@@ -27,8 +27,8 @@ public class GUI extends JFrame implements Observer {
     private JList list1;
     private JButton removerMembroButton;
 
-    private FacadeModel modelFacade; // mudei o nome
-    private DefaultListModel<String> model1; //meti pq causa de uma função
+    private FacadeModel modelFacade;
+    private DefaultListModel<String> model1;
 
     private Adicionar adicionarFrame;
 
@@ -52,12 +52,11 @@ public class GUI extends JFrame implements Observer {
         list1.setVisibleRowCount(4);
 
 
-        // membro selecionado
+        //
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!e.getValueIsAdjusting()) {
-
                     if(list1.getSelectedIndex() == -1){
                         removerMembroButton.setEnabled(false);
                     } else {
@@ -109,7 +108,7 @@ public class GUI extends JFrame implements Observer {
 
                 int index = list1.getSelectedIndex();
                 model1.remove(index);
-                // TODO: remover no model
+
                 int size = model1.getSize();
 
                 if(size <= 0){
