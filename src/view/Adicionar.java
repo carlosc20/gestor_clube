@@ -16,7 +16,6 @@ public class Adicionar extends JFrame{
     private JButton cancelarButton;
     private JButton adicionarButton;
     private JPanel mainPanel;
-    private JLabel warningLabel;
 
     private JFrame isto;
     private FacadeModel modelFacade;
@@ -39,22 +38,23 @@ public class Adicionar extends JFrame{
                 String numeroI = textFieldNumero.getText();
 
                 if(!nomeI.equals("") || !numeroI.equals("")){
-                    // TODO: Adicionar uma caixa para os erros e verificar se é um numero valido
-
                     try{
                         int numero = Integer.parseInt(textFieldNumero.getText());
                         modelFacade.addAluno(nomeI, numero, "", LocalDate.now(),"" );
-                        isto.setVisible(false);
                         isto.dispose();
                     }
-                    catch (NumberFormatException n) {System.out.println("Erro 0");}
-                    catch (AlunoJaExisteException a) {System.out.println("Erro 1");}
-                    catch (IOException i) {System.out.println("Erro 2");}
-
+                    catch (NumberFormatException n) {
+                        JOptionPane.showMessageDialog(isto, "O número tem de estar num formato adequado.","Erro", JOptionPane.WARNING_MESSAGE);
+                    }
+                    catch (AlunoJaExisteException a) {
+                        JOptionPane.showMessageDialog(isto, "O aluno já existe.","Erro", JOptionPane.WARNING_MESSAGE);
+                    }
+                    catch (IOException i) {
+                        JOptionPane.showMessageDialog(isto, "Não foi possível guardar.","Erro", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 else {
-                    System.out.println("teste");
-                    warningLabel.setText("Erro");
+                    JOptionPane.showMessageDialog(isto, "É necessário preencher todos os campos.","Erro", JOptionPane.WARNING_MESSAGE);
                 }
 
             }
