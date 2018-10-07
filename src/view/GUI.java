@@ -120,16 +120,18 @@ public class GUI extends JFrame implements Observer {
             }
         });
     }
-/*
-    public void fillJList(){
+
+    private void fillJList(){
+        this.model1.clear();
+
         Set<Integer> numeros = modelFacade.getAlunosNumero();
         for(int a : numeros) {
-            this.model1.addElement(String.valueOf("a"));
+            this.model1.addElement(String.valueOf(a));
         }
     }
-*/
+
     public static void main(String[] args) {
-        new GUI(FacadeModel.getInstance());
+        new GUI(FacadeModel.getInstance()).fillJList();
     }
 
     private void createUIComponents() {
@@ -139,6 +141,6 @@ public class GUI extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Atualizou");
-       // fillJList();
+       fillJList();
     }
 }
