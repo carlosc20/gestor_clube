@@ -109,6 +109,7 @@ public class GUI extends JFrame implements Observer {
             public void actionPerformed(ActionEvent e) {
 
                 int index = list1.getSelectedIndex();
+                /*
                 model1.remove(index);
                 // TODO: remover no model
                 int size = model1.getSize();
@@ -120,13 +121,14 @@ public class GUI extends JFrame implements Observer {
                         index--;
                     }
                 }
+                */
 
                 list1.setSelectedIndex(index);
                 list1.ensureIndexIsVisible(index);
 
                 ArrayList<Integer> alunos = new ArrayList<>(modelFacade.getAlunosNumero());
                 try {
-                    modelFacade.delAluno(alunos.get(index + 1));
+                    modelFacade.delAluno(alunos.get(index));
                 } catch (Exception f) {
                     System.out.println("Erro ao remover o aluno");
                 }
@@ -138,8 +140,12 @@ public class GUI extends JFrame implements Observer {
         this.model1.clear();
 
         Set<Integer> numeros = modelFacade.getAlunosNumero();
-        for(int a : numeros) {
-            this.model1.addElement(String.valueOf(a));
+        if(numeros.size() < 1) {
+            removerMembroButton.setEnabled(false);
+        } else {
+            for (int a : numeros) {
+                this.model1.addElement(String.valueOf(a));
+            }
         }
     }
 
