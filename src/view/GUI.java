@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
@@ -117,6 +118,13 @@ public class GUI extends JFrame implements Observer {
 
                 list1.setSelectedIndex(index);
                 list1.ensureIndexIsVisible(index);
+
+                ArrayList<Integer> alunos = new ArrayList<>(modelFacade.getAlunosNumero());
+                try {
+                    modelFacade.delAluno(alunos.get(index));
+                } catch (Exception f) {
+                    System.out.println("Erro ao remover o aluno");
+                }
             }
         });
     }
