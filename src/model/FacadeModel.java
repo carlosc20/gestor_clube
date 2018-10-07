@@ -35,6 +35,16 @@ public class FacadeModel extends Observable {
 
     }
 
+    public void pagarCota(int numero, double valor) throws IOException{
+        try{
+            clube.pagarQuota(numero, valor);
+        } finally {
+            setChanged();
+            notifyObservers();
+        }
+
+    }
+
     public Set<Integer> getAlunosNumero() {
         return clube.getAlunos().keySet();
     }

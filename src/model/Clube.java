@@ -46,10 +46,11 @@ public class Clube implements Serializable {
      * Adicionar um membro.
      * Se o membro já existe, não faz nada
      */
-    public void pagarQuota(Integer numero, Double valor){
+    public void pagarQuota(Integer numero, Double valor) throws IOException{
         Aluno a = alunos.get(numero);
         a.addCota(valor);
         alunos.put(numero, a);
+        data.saveState(this);
     }
 
 
