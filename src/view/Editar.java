@@ -69,6 +69,9 @@ public class Editar extends JFrame {
                         isto.dispose();
                     } catch (IOException i) {
                         JOptionPane.showMessageDialog(isto, "Não foi possível guardar.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    } catch (AlunoNaoExisteException a) {
+                        JOptionPane.showMessageDialog(isto, "O aluno não existe.","Erro", JOptionPane.ERROR_MESSAGE);
+                        dispose();
                     }
                 } else {
                     JOptionPane.showMessageDialog(isto, "É necessário preencher todos os campos.", "Erro", JOptionPane.WARNING_MESSAGE);

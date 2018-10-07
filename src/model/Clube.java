@@ -51,6 +51,7 @@ public class Clube implements Serializable {
         a.addCota(valor);
         alunos.put(numero, a);
         data.saveState(this);
+        System.out.println("Guardado");
     }
 
 
@@ -81,11 +82,15 @@ public class Clube implements Serializable {
         data.saveState(this); //Guarda o estado atual do clube
     }
 
-    public void editAluno(Aluno a) throws IOException{
-        Aluno copia = a.clone();
+    public void editAluno(Aluno a) throws AlunoNaoExisteException, IOException {
         int num = a.getNumero();
 
-        alunos.put(num, a);
+        Aluno aluno = this.getAluno(num);
+        aluno.setNome(a.getNome());
+        aluno.setCurso(a.getCurso());
+        aluno.setMorada(a.getMorada());
+
+        alunos.put(num, aluno);
         data.saveState(this);
     }
 

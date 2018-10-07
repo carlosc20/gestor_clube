@@ -58,8 +58,18 @@ public class Aluno implements Serializable {
         return morada;
     }
 
-    public int getNumero(){
-        return numero;
+    public int getNumero() { return numero; }
+
+    public void setCurso(String novoCurso) {
+        this.curso = novoCurso;
+    }
+
+    public void setNome(String novoNome) {
+        this.nome = novoNome;
+    }
+
+    public void setMorada(String novoMorada) {
+        this.morada = novoMorada;
     }
 
     public Aluno clone(){

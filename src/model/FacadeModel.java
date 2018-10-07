@@ -26,7 +26,7 @@ public class FacadeModel extends Observable {
         }
     }
 
-    public void editAluno(String nome, int numero, String curso, LocalDate ano, String morada) throws IOException {
+    public void editAluno(String nome, int numero, String curso, LocalDate ano, String morada) throws IOException, AlunoNaoExisteException {
         try{
             clube.editAluno(new Aluno(nome, numero, curso, ano, morada));
         } finally {
@@ -45,8 +45,8 @@ public class FacadeModel extends Observable {
         }
 
     }
-    // não há emcapsulamento ou lá o que é
-    public ArrayList<Double> getCotasValor(int numero)throws AlunoNaoExisteException{
+
+    public ArrayList<Double> getCotasValor(int numero) throws AlunoNaoExisteException{
            Aluno a = clube.getAluno(numero);
            ArrayList<Cota> c = a.getCotas();
 

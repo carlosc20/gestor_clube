@@ -58,6 +58,7 @@ public class Cotas extends JFrame implements Observer {
             }
         });
     }
+
     public void fillJListCotas (){
         this.modelQ.clear();
         try {
