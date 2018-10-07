@@ -74,23 +74,19 @@ public class FacadeModel extends Observable {
 
 
     public String getAlunoNome(int numero) throws AlunoNaoExisteException {
-        Aluno aluno = clube.getAlunos().get(numero);
-        return aluno.getNome();
+        return clube.getAluno(numero).getNome();
     }
 
     public String getAlunoCurso(int numero) throws AlunoNaoExisteException {
-        Aluno aluno = clube.getAlunos().get(numero);
-        return aluno.getCurso();
+        return clube.getAluno(numero).getCurso();
     }
 
     public LocalDate getAlunoAno(int numero) throws AlunoNaoExisteException {
-        Aluno aluno = clube.getAlunos().get(numero);
-        return aluno.getAno();
+        return clube.getAluno(numero).getAno();
     }
 
     public String getAlunoMorada(int numero) throws AlunoNaoExisteException {
-        Aluno aluno = clube.getAlunos().get(numero);
-        return aluno.getMorada();
+        return clube.getAluno(numero).getMorada();
     }
 
     public void delAluno(int numero) throws AlunoNaoExisteException, IOException {
