@@ -15,8 +15,8 @@ public class Cotas extends JFrame implements Observer {
     private FacadeModel modelFacade;
     private JList list1;
     private JPanel panel3;
-    private JButton pagar;
-    private JButton ok;
+    private JButton pagarButton;
+    private JButton confirmarButton;
     private DefaultListModel<String> modelQ;
     private JFrame isto;
 
@@ -41,7 +41,7 @@ public class Cotas extends JFrame implements Observer {
         list1.setLayoutOrientation(JList.VERTICAL);
 
 
-        pagar.addActionListener(new ActionListener() {
+        pagarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
@@ -49,7 +49,7 @@ public class Cotas extends JFrame implements Observer {
                 }catch (IOException i){System.out.println("erro");}
             }
         });
-        ok.addActionListener(new ActionListener() {
+        confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 isto.dispose();

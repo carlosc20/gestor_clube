@@ -17,8 +17,12 @@ public class Editar extends JFrame {
     private JTextField textFieldNumero;
     private JButton cancelarButton;
     private JButton confirmarButton;
+    private JButton cotasButton;
 
     private JFrame isto;
+    private Cotas cotasFrame;
+
+    private int naluno;
 
     public Editar(int numero) {
         super("Editar");
@@ -27,6 +31,7 @@ public class Editar extends JFrame {
         this.setVisible(true);
 
         isto = this;
+        naluno = numero;
 
         modelFacade = FacadeModel.getInstance();
         try {
@@ -46,21 +51,33 @@ public class Editar extends JFrame {
         confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: editar dados
+
                 String novoNome = textFieldNome.getText();
-                try {
-                    int numero = Integer.parseInt(textFieldNumero.getText());
-                    modelFacade.editAluno(novoNome, numero, "", LocalDate.now(),"" );
-                    isto.dispose();
-                }
-                catch (NumberFormatException n) {
-                    JOptionPane.showMessageDialog(isto, "O número tem de estar num formato adequado.","Erro", JOptionPane.WARNING_MESSAGE);
-                }
-                catch (IOException i) {
-                    JOptionPane.showMessageDialog(isto, "Não foi possível guardar.","Erro", JOptionPane.ERROR_MESSAGE);
+
+                if (!novoNome.equals("")) {
+                    System.out.println(novoNome);
+                    try {
+                        modelFacade.editAluno(novoNome, naluno, "", LocalDate.now(), "");
+                        isto.dispose();
+                    } catch (IOException i) {
+                        JOptionPane.showMessageDialog(isto, "Não foi possível guardar.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(isto, "É necessário preencher todos os campos.", "Erro", JOptionPane.WARNING_MESSAGE);
                 }
             }
 
+        });
+
+        cotasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (cotasFrame != null && cotasFrame.isDisplayable()) { //se já existe, tras para a frente
+                    cotasFrame.toFront();
+                } else {
+                    cotasFrame = new Cotas(naluno);
+                }
+            }
         });
     }
 }

@@ -35,7 +35,7 @@ public class GUI extends JFrame implements Observer {
 
         //frame
         super("Menu");
-        this.setSize(600,600);
+        this.setSize(500,600);
         this.add(panel1);
         this.setVisible(true);
 

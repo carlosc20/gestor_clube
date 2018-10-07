@@ -37,7 +37,7 @@ public class Adicionar extends JFrame{
                 String nomeI = textFieldNome.getText();
                 String numeroI = textFieldNumero.getText();
 
-                if(!nomeI.equals("") || !numeroI.equals("")){
+                if(!nomeI.equals("") && !numeroI.equals("")){
                     try{
                         int numero = Integer.parseInt(textFieldNumero.getText());
                         modelFacade.addAluno(nomeI, numero, "", LocalDate.now(),"" );
