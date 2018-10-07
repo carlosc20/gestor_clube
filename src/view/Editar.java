@@ -48,7 +48,7 @@ public class Editar extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO: editar dados
                 String novoNome = textFieldNome.getText();
-                try{
+                try {
                     int numero = Integer.parseInt(textFieldNumero.getText());
                     modelFacade.editAluno(novoNome, numero, "", LocalDate.now(),"" );
                     isto.dispose();

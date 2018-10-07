@@ -29,7 +29,7 @@ public class FacadeModel extends Observable {
     public void editAluno(String nome, int numero, String curso, LocalDate ano, String morada) throws IOException {
         try{
             clube.editAluno(new Aluno(nome, numero, curso, ano, morada));
-        }finally {
+        } finally {
             setChanged();
             notifyObservers(0);
         }

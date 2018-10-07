@@ -1,5 +1,6 @@
 package view;
 
+import model.AlunoNaoExisteException;
 import model.FacadeModel;
 
 import javax.swing.*;
@@ -138,7 +139,14 @@ public class GUI extends JFrame implements Observer {
             removerMembroButton.setEnabled(false);
         } else {
             for (int a : numeros) {
-                this.model1.addElement(String.valueOf(a));
+                try {
+                    String name = modelFacade.getAlunoNome(a);
+                    StringBuilder sb = new StringBuilder(name);
+                    sb.append(" (").append(a).append(")");
+                    this.model1.addElement(sb.toString());
+                } catch (AlunoNaoExisteException e) {
+                    //Continuar
+                }
             }
         }
     }
@@ -157,8 +165,8 @@ public class GUI extends JFrame implements Observer {
     public void update(Observable o, Object arg) {
         System.out.println("Atualizou");
         int atual = (int) arg;
-        if(atual==0)
+        if(atual == 0) {
             fillJList();
-        else;
+        }
     }
 }

@@ -68,8 +68,8 @@ public class Cotas extends JFrame implements Observer {
     public void update(Observable o, Object arg) {
         System.out.println("Atualizou");
         int atual = (int) arg;
-        if(atual==1)
+        if(atual == 1) {
             fillJListCotas();
-        else;
+        }
     }
 }
