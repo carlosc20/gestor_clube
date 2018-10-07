@@ -64,16 +64,12 @@ public class Cotas extends JFrame implements Observer {
             //ArrayList<Double> valores = modelFacade.getCotasValor(id);
             ArrayList<LocalDate> datas = modelFacade.getCotasData(id);
                 for (LocalDate a : datas) {
-                    //this.modelQ.addElement(String.valueOf(a));
-                    StringBuilder sb = new StringBuilder(a.toString());
-                    sb.append(" (").append("5.0").append(")");
-                    this.modelQ.addElement(sb.toString());
+                    this.modelQ.addElement("Data: " + a + ", Valor: 5.0");
                 }
         }catch(AlunoNaoExisteException a) {System.out.println("erro");}
     }
 
     public void update(Observable o, Object arg) {
-        System.out.println("Atualizou");
         int atual = (int) arg;
         if(atual == 1) {
             fillJListCotas();
