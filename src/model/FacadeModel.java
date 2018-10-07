@@ -1,10 +1,12 @@
 package model;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Observable;
 import java.util.Set;
 import java.time.LocalDate;
 
-public class FacadeModel {
+public class FacadeModel extends Observable {
     private static FacadeModel INSTANCE = new FacadeModel();
     private Clube clube = new Clube ();
 
@@ -15,12 +17,18 @@ public class FacadeModel {
     private FacadeModel() {}
 
     public void addAluno(String nome, int numero, String curso, LocalDate ano, String morada) throws AlunoJaExisteException, IOException {
-        clube.addAluno(new Aluno(nome, numero, curso, ano, morada));
+        try {
+            clube.addAluno(new Aluno(nome, numero, curso, ano, morada));
+        } finally {
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public Set<Integer> getAlunosNumero() {
         return clube.getAlunos().keySet();
     }
+
 
     public String getAlunoNome(int numero) throws AlunoNaoExisteException {
         Aluno aluno = clube.getAlunos().get(numero);
@@ -43,6 +51,11 @@ public class FacadeModel {
     }
 
     public void delAluno(int numero) throws AlunoNaoExisteException, IOException {
-        clube.delAluno(numero);
+        try {
+            clube.delAluno(numero);
+        } finally {
+            setChanged();
+            notifyObservers();
+        }
     }
 }
