@@ -4,6 +4,7 @@ import data.FacadeData;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Observable;
@@ -90,5 +91,19 @@ public class Clube extends Observable implements Serializable {
         notifyObservers();
     }
 
+    public static void main(String args[]){
+        Aluno j = new Aluno("marco", 8, "mie", LocalDate.now(), "");
+        Aluno w = new Aluno("maro", 9, "mie", LocalDate.now(), "");
+        Aluno i = new Aluno("marc", 10, "mii", LocalDate.now(), "");
+        Clube c = new Clube();
 
+        try{c.addAluno(j); c.addAluno(i); c.addAluno((w));}
+        catch(AlunoJaExisteException e){}
+        catch (IOException e){}
+
+        Map<Integer, Aluno> a = c.getAlunos();
+        for(Aluno al : a.values()) {
+            System.out.println(al.getNome());
+        }
+    }
 }

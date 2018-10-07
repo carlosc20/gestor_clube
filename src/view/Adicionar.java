@@ -1,10 +1,13 @@
 package view;
 
-import model.Clube;
+import model.AlunoJaExisteException;
+import model.FacadeModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.time.LocalDate;
 
 public class Adicionar extends JFrame{
 
@@ -16,13 +19,14 @@ public class Adicionar extends JFrame{
     private JLabel warningLabel;
 
     private JFrame isto;
-    private Clube modelFacade;
+    private FacadeModel modelFacade;
 
-    public Adicionar() {
+    public Adicionar(FacadeModel clube) {
         super("Adicionar Membro");
         this.add(mainPanel);
         this.setSize(400,200);
         this.setVisible(true);
+        this.modelFacade = clube;
 
         isto = this;
 
@@ -36,6 +40,10 @@ public class Adicionar extends JFrame{
                 if(!nomeI.equals("") || !numeroI.equals("")){
 
                     int numero = Integer.parseInt(textFieldNumero.getText());
+
+                    try{clube.addAluno(nomeI, numero, "", LocalDate.now(),"" );}
+                    catch (AlunoJaExisteException a) {System.out.println("Erro");}
+                    catch (IOException i) {System.out.println("Erro");}
 
                     isto.setVisible(false);
                     isto.dispose();

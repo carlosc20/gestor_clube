@@ -1,6 +1,8 @@
 package view;
 
-import model.Clube;
+import model.FacadeModel;
+import model.AlunoJaExisteException;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -11,8 +13,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 
 
 public class GUI extends JFrame implements Observer {
@@ -23,12 +27,11 @@ public class GUI extends JFrame implements Observer {
     private JButton removerMembroButton;
     private JTable table1;
 
-    private Clube modelFacade;
+    private FacadeModel modelFacade; // mudei o nome
+    private DefaultListModel<String> model1; //meti pq causa de uma função
 
 
-
-    public GUI(Clube model){
-
+    public GUI(FacadeModel model){
 
 
         //frame
@@ -38,11 +41,10 @@ public class GUI extends JFrame implements Observer {
         this.setVisible(true);
 
         this.modelFacade = model;
-        this.modelFacade = new Clube();
         this.modelFacade.addObserver(this);
 
         // lista de membros
-        DefaultListModel<String> model1 = new DefaultListModel<>();
+        this.model1 = new DefaultListModel<>();
         list1.setModel(model1);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list1.setLayoutOrientation(JList.VERTICAL);
@@ -89,8 +91,7 @@ public class GUI extends JFrame implements Observer {
         adicionarMembroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Adicionar nova = new Adicionar();
+                Adicionar nova = new Adicionar(modelFacade); //mudei o contrutor
 
             }
         });
@@ -119,11 +120,16 @@ public class GUI extends JFrame implements Observer {
             }
         });
     }
-
-
-
+/*
+    public void fillJList(){
+        Set<Integer> numeros = modelFacade.getAlunosNumero();
+        for(int a : numeros) {
+            this.model1.addElement(String.valueOf("a"));
+        }
+    }
+*/
     public static void main(String[] args) {
-        new GUI(null);
+        new GUI(FacadeModel.getInstance());
     }
 
     private void createUIComponents() {
@@ -132,6 +138,6 @@ public class GUI extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        // TODO: coisas
+       // fillJList();
     }
 }
