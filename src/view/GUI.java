@@ -32,7 +32,7 @@ public class GUI extends JFrame implements Observer {
 
     private Adicionar adicionarFrame;
 
-    public GUI(FacadeModel model){
+    public GUI(){
 
 
         //frame
@@ -41,7 +41,7 @@ public class GUI extends JFrame implements Observer {
         this.add(panel1);
         this.setVisible(true);
 
-        this.modelFacade = model;
+        this.modelFacade = FacadeModel.getInstance();
         this.modelFacade.addObserver(this);
 
         // lista de membros
@@ -77,7 +77,8 @@ public class GUI extends JFrame implements Observer {
                     if (index >= 0) {
                         //Object o = list1.getModel().getElementAt(index);
                         Object selected = list1.getModel().getElementAt(index);
-                        Cotas nova = new Cotas(modelFacade);
+                        ArrayList<Integer> alunos = new ArrayList<>(modelFacade.getAlunosNumero());
+                        Cotas nova = new Cotas(alunos.get(index));
                         nova.setVisible(true);
 
                     }
@@ -124,7 +125,7 @@ public class GUI extends JFrame implements Observer {
 
                 ArrayList<Integer> alunos = new ArrayList<>(modelFacade.getAlunosNumero());
                 try {
-                    modelFacade.delAluno(alunos.get(index));
+                    modelFacade.delAluno(alunos.get(index + 1));
                 } catch (Exception f) {
                     System.out.println("Erro ao remover o aluno");
                 }
@@ -142,7 +143,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     public static void main(String[] args) {
-        new GUI(FacadeModel.getInstance()).fillJList();
+        new GUI().fillJList();
     }
 
     private void createUIComponents() {
